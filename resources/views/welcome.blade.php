@@ -21,7 +21,7 @@
     <div id="cards-container" class="row">
         @foreach($events as $event)
         <div class="card col-md-3">
-            <img src="/img/events/{{ $event->image }}" alt="{{ $event->title }}"> {{-- Para não vim mais a imagem estática. Aqui concatenamos com nosso $events-image e vim a imagem correta do upload --}}
+            <img src="/img/events/{{ $event->image }}" alt="{{ $event->title }}"> {{-- Para não vim mais a imagem estática. Aqui concatenamos com nosso $events->image e vim a imagem correta do upload --}}
             <div class="card-body">
                 <p class="card-date">{{ date('d/m/Y', strtotime($event->date)) }}</p> {{-- Aqui vai transferir o formato de datas lá do banco o strtotime e a função date vai fazer o format para o formato que agente precisa --}}
                 <h5 class="card-title">{{ $event->title }}</h5>

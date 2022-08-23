@@ -51,6 +51,10 @@ header {
 }
 
 /* navbar */
+.navbar {
+    display: flex;
+}
+
 #navbar img {
     width: 50px;
 }

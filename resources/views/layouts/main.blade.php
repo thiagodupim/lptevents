@@ -19,41 +19,44 @@
     </head>
     <body>
         <header>
-            <nav class="navbar navbar-expand-lg navbar-light">
-                <div class="collapse navbar-collapse" id="navbar">
+            <nav class="navbar navbar-expand-sm navbar-light">
+                <div class="container">
+
                     <a href="/" class="navbar-brand">
-                        <img src="/img/hdcevents_logo.svg" alt="LPT Events">
-                    </a>
-                  
-                  <ul class="navbar-nav">
-                      <li class="nav-iten">
-                          <a href="/" class="nav-link">Eventos</a>
-                      </li>
-                      <li class="nav-iten">
-                            <a href="/events/create" class="nav-link">Criar Eventos</a>
-                      </li>
-                      @auth {{-- Aqui estamos colocando as alterações do layout para quem já está logado --}}
-                        <li class="nav-item">
-                            <a href="/dashboard" class="nav-link">Meus eventos</a>
-                        </li>
-                        <li class="nav-item">
-                            <form action="/logout" method="POST">
-                                @csrf
-                                <a href="/logout" class="nav-link" 
-                                onclick="event.preventDefault(); 
-                                    this.closest('form').submit();">Sair</a>
-                            </form> {{-- Esta forma acima é para fazer o logout com JS --}}
-                        </li>
-                      @endauth  
-                      @guest {{-- Aqui é para indicar que estamos logado, assim mudara algumas coisas no layout --}}
-                        <li class="nav-iten">
-                            <a href="/login" class="nav-link">Entrar</a>
-                        </li>
-                        <li class="nav-iten">
-                            <a href="/register" class="nav-link">Cadastrar</a>
-                        </li>  
-                       @endguest 
-                  </ul>  
+                        <img src="/img/hdcevents_logo.svg" width="50" alt="LPT Events">
+                    </a> 
+                    
+                  <div class="nav-list">
+                      <ul class="navbar-nav ml-auto">
+                          <li class="nav-item">
+                              <a href="/" class="nav-link">Eventos</a>
+                          </li>
+                          <li class="nav-item">
+                                <a href="/events/create" class="nav-link">Criar Eventos</a>
+                          </li>
+                          @auth {{-- Aqui estamos colocando as alterações do layout para quem já está logado --}}
+                            <li class="nav-item">
+                                <a href="/dashboard" class="nav-link">Meus eventos</a>
+                            </li>
+                            <li class="nav-item">
+                                <form action="/logout" method="POST">
+                                    @csrf
+                                    <a href="/logout" class="nav-link"
+                                    onclick="event.preventDefault();
+                                        this.closest('form').submit();">Sair</a>
+                                </form> {{-- Esta forma acima é para fazer o logout com JS --}}
+                            </li>
+                          @endauth
+                          @guest {{-- Aqui é para indicar que estamos logado, assim mudara algumas coisas no layout --}}
+                            <li class="nav-item">
+                                <a href="/login" class="nav-link">Entrar</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/register" class="nav-link">Cadastrar</a>
+                            </li>
+                           @endguest
+                      </ul>
+                  </div>
                 </div>
             </nav>
         </header>
