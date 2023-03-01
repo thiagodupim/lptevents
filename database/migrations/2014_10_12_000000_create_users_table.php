@@ -17,6 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->enum('tipo',['admin' , 'client'])->default('client');
+            //$table->boolean('admin')->default(1)();
+            //$table->boolean('client')->default(1);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

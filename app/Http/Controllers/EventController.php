@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUpdateCreateFormResquest;
+use App\Http\Requests\StoreUpdateFormResquest;
 use Illuminate\Http\Request;
 
 use App\Models\Event; //Aqui estamos chamando nosso model criado, que se chama Event
@@ -32,7 +34,7 @@ class EventController extends Controller
         return view('events.create');
     }
 
-    public function store(Request $request) {
+    public function store(StoreUpdateCreateFormResquest $request) {
         $event = new Event;
 
         $event->title = $request->title;
@@ -64,7 +66,7 @@ class EventController extends Controller
 
         $event->save();
 
-        return redirect('/')->with('msg', 'Evento criado com sucesso'); //Aqui botamos a menssagem que queremos que aparece assim que clicar em criar evento
+        return redirect('/')->with('msg', 'Viagem criada com sucesso'); //Aqui botamos a menssagem que queremos que aparece assim que clicar em criar evento
     }
 
     public function show($id) {
@@ -107,7 +109,7 @@ class EventController extends Controller
         
         Event::findOrFail($id)->delete();
 
-        return redirect('/dashboard')->with('msg', 'Evento excluido com sucesso!');
+        return redirect('/dashboard')->with('msg', 'Viagem desabilitada com sucesso!');
     } /*Action para deletar um evento*/
 
     public function edit($id) {
@@ -117,14 +119,14 @@ class EventController extends Controller
         $event = Event::findOrFail($id);
 
         if($user->id != $event->user_id) {
-            return redirect('/dashboard')->with('msg', 'Você não pode editar esse evento.'); /*Aqui é uma validação de segurança para que somente o criador do evento consiga edita-lo*/
+            return redirect('/dashboard')->with('msg', 'Você não pode editar essa viagem.'); /*Aqui é uma validação de segurança para que somente o criador do evento consiga edita-lo*/
         }
 
         return view('events.edit', ['event' => $event]); 
 
     } /* Para edição de um evento*/
 
-    public function update(Request $request) {
+    public function update(StoreUpdateFormResquest $request) {
 
         //Abaixo é para fazer o upload corretamente de imagens quando editar um evento e mudar sua imagem
         $data = $request->all();
@@ -145,7 +147,7 @@ class EventController extends Controller
 
         Event::findOrFail($request->id)->update($data);
 
-        return redirect('/dashboard')->with('msg', 'Evento editado com sucesso!');
+        return redirect('/dashboard')->with('msg', 'Viagem editada com sucesso!');
 
     }
 
@@ -157,7 +159,7 @@ class EventController extends Controller
 
         $event = Event::findOrFail($id);
 
-        return redirect('/dashboard')->with('msg', 'Sua presença está confirmada no evento ' . $event->title);
+        return redirect('/dashboard')->with('msg', 'Sua presença está confirmada na viagem ' . $event->title);
     }
 
     public function leaveEvent($id) {
@@ -167,7 +169,7 @@ class EventController extends Controller
 
         $event = Event::findOrFail($id);
 
-        return redirect('/dashboard')->with('msg', 'Você saiu com sucesso do evento: ' . $event->title);
+        return redirect('/dashboard')->with('msg', 'Você cancelou com sucesso a viagem: ' . $event->title);
     }
 
 }

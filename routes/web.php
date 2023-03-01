@@ -14,11 +14,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 use App\Http\Controllers\EventController; /*Aqui estamos importando o controller da action index*/
+use App\Http\Controllers\ContactController;
 
 Route::get('/', [EventController::class, 'index']); /* Aqui agente está dizendo que vai usar o EventController que criamos, e também a rota index*/
 
-Route::get('/events/create', [EventController::class, 'create'])->middleware('auth'); 
-/*Esse é o nome do método que vamos utilizar la na classe de controller pra poder criar um evento no nosso projeto, e o middleware('auth') é para que possamos acessar a view de criar eventos somente depois de logado*/
+Route::group(['middleware' => ['auth', 'admin']], function () {
+    Route::get('/events/create', [EventController::class, 'create'])->middleware('auth'); 
+    /*Esse é o nome do método que vamos utilizar la na classe de controller pra poder criar um evento no nosso projeto, e o middleware('auth') é para que possamos acessar a view de criar eventos somente depois de logado*/
+});
 
 Route::get('/events/{id}', [EventController::class, 'show']);/*Usamos o show para mostrar um dado especifico*/
 
@@ -31,10 +34,13 @@ Route::get('/events/edit/{id}', [EventController::class, 'edit'])->middleware('a
 
 Route::put('/events/update/{id}', [EventController::class, 'update'])->middleware('auth');
 
+Route::any('/events/update/{id}', [EventController::class, 'update'])->middleware('auth');
 
 Route::get('/contatos', function () {
     return view('contact');
 });
+
+Route::post('/contatos', [ContactController::class, 'store'])->middleware('auth');
 
 Route::get('/dashboard', [EventController::class, 'dashboard'])->middleware('auth');
 
