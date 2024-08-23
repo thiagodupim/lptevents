@@ -132,10 +132,10 @@
 
                 <div class="col-md-3">
                     <ul class="navbar-nav">
-                        <li>&copy; Conexão Saúde <br> Todos os direitos reservados</li>
+                        <li>&copy; Prime Transporte Hospitalar <br> Todos os direitos reservados</li>
 
                         <li id="endereco">
-                        Vargem do Basto - nº 140 - Zona Rural, Datas - MG, 39130-000
+                            Rua Domingos José de Almeida - nº 50000 - Bom Jesus, Diamantina - MG, 39100-000
                         </li>
                     </ul>
                 </div>
@@ -153,7 +153,6 @@
     </footer>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"> </script>
     <script nomodule src="https://unpkg .com/ionicons@5.5.2/dist/ionicons/ionicons.js"> </script>
-
 </body>
 
 </html>

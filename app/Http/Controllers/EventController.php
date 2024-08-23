@@ -7,13 +7,10 @@ use App\Http\Requests\StoreUpdateFormResquest;
 use Illuminate\Http\Request;
 
 use App\Models\Event; //Aqui estamos chamando nosso model criado, que se chama Event
-
 use App\Models\User;
-
 
 class EventController extends Controller
 {
-
     public function index(){
         //O search abaixo é a parte de busca do nosso site, é aqui que conseguimos fazer a lógica da busca
         $search = request('search'); 
@@ -36,12 +33,18 @@ class EventController extends Controller
 
     public function store(StoreUpdateCreateFormResquest $request) {
         $event = new Event;
+        $user = auth()->user();
 
+        $event->user_id = $user->id;
         $event->title = $request->title;
         $event->date = $request->date;
-        $event->city = $request->city;
-        $event->private = $request->private;
         $event->description = $request->description;
+        $event->exit = $request->exit;
+        $event->city = $request->city;
+        $event->routes = $request->routes;
+        $event->private = $request->private;
+        $event->transport = $request->transport;
+        $event->vagas = $request->vagas;
         $event->items = $request->items; 
         /*Esse request feito acima para item é para ter possibilidade de salvar os itens no DB com a estrutura de json*/
 
@@ -60,9 +63,6 @@ class EventController extends Controller
             $event->image = $imageName;/*Alterei do nosso objeto a propriedade image que estamos instanciando para o imageName que é o nome da imagem, ou seja, aqui que salva no DB de fato*/
 
         }
-
-        $user = auth()->user();
-        $event->user_id = $user->id; /*Estou acessando a propriedade id do usuario logado, e com isso consigo preencher o campo de user_id na tabela events*/
 
         $event->save();
 
@@ -172,4 +172,17 @@ class EventController extends Controller
         return redirect('/dashboard')->with('msg', 'Você cancelou com sucesso a viagem: ' . $event->title);
     }
 
+    public function tripCancellation($id)
+    {
+        $event = Event::findOrFail($id);
+        return view('events.trip_cancellation', compact('event'));
+    }
+
+    public function cancelTrip($id, Request $request)
+    {
+        $event = Event::findOrFail($id);
+
+        $event->canceled = 'cancelado';
+        $event->cancellation_reason = $request->description;
+    }
 }

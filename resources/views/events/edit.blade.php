@@ -33,8 +33,16 @@
       <input type="date" class="form-control" id="date" name="date" value="{{ $event->date->format('Y-m-d') }}">
     </div> {{-- Aqui é uma forma de mostrar a data que o evento está marcado, na pág de edição e o Y é maiusculo --}}
     <div class="form-group">
+      <label for="exit">Saída:</label>
+      <input type="text" class="form-control" id="exit" name="exit" placeholder="Local de saída" value="{{ old('exit') }}">
+    </div>
+    <div class="form-group">
       <label for="title">Destino:</label>
       <input type="text" class="form-control" id="city" name="city" placeholder="Local da consulta" value="{{ $event->city }}">
+    </div>
+    <div class="form-group">
+      <label for="routes">Rotas de parada:</label>
+      <input type="text" class="form-control" id="routes" name="routes" placeholder="Informar no máximo 5 cidades" value="{{ old('routes') }}">
     </div>
     <div class="form-group">
       <label for="title">Vagas para um acompanhante?</label>
@@ -47,8 +55,12 @@
       <label for="title">Descrição:</label>
       <textarea name="description" id="description" class="form-control" placeholder="O que vai acontecer na viagem?">{{ $event->description }}</textarea>
     </div>
+    <div class="form-group"> 
+      <label for="vagas">Vagas:</label>
+      <input type="number" class="form-control" id="vagas" name="vagas" placeholder="Informe quantas vagas terá" value="{{ old('vagas') }}">
+    </div>
     <div class="form-group">
-      <label for="title">O ônibus conta com:</label>
+      <label for="title">O veículo conta com:</label>
       <div class="form-group">
         <input type="checkbox" name="items[]" value="Rampa para cadeirantes"> Rampa para cadeirantes {{-- Quando vamos enviar um array de itens(conjunto de itens) temos que colocar entre [] ali no name --}}
       </div>
@@ -65,6 +77,10 @@
         <input type="checkbox" name="items[]" value="Wi-fi"> Wi-Fi
       </div>
     </div>
+    <br>
+
+    </div>
+    <br>
     <input type="submit" class="btn btn-primary" value="Editar Viagem">
   </form>
 </div>

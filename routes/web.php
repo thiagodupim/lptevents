@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\EventController; /*Aqui estamos importando o controller da action index*/
 use App\Http\Controllers\ContactController;
+use GuzzleHttp\Middleware;
 
 Route::get('/', [EventController::class, 'index']); /* Aqui agente está dizendo que vai usar o EventController que criamos, e também a rota index*/
 
@@ -36,9 +37,7 @@ Route::put('/events/update/{id}', [EventController::class, 'update'])->middlewar
 
 Route::any('/events/update/{id}', [EventController::class, 'update'])->middleware('auth');
 
-Route::get('/contatos', function () {
-    return view('contact');
-});
+Route::get('/contatos', [ContactController::class, 'create']);  
 
 Route::post('/contatos', [ContactController::class, 'store'])->middleware('auth');
 
@@ -47,3 +46,11 @@ Route::get('/dashboard', [EventController::class, 'dashboard'])->middleware('aut
 Route::get('/events/join/{id}', [EventController::class, 'joinEvent'])->middleware('auth');
 
 Route::delete('/events/leave/{id}', [EventController::class, 'leaveEvent'])->middleware('auth');
+
+Route::get('/inscricao', function () {
+    return view('enrollment');
+})->middleware('auth');
+
+Route::get('event/cancellation/{id}', [EventController::class, 'tripCancellation'])->name('trip.Cancellation');
+
+Route::post('event/cancel-trip/{id}', [EventController::class, 'cancelTrip'])->name('trip.cancel');

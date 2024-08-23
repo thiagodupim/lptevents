@@ -20,6 +20,7 @@ header {
 
 .container-fluid {
     padding: 0;
+    flex: 1;
 }
 .btn-primary {
    background-color: #F2A340;
@@ -286,12 +287,19 @@ a{
     cursor: pointer;
 }
 
+.container {
+    flex: 1;
+}
+
 /* footer */
 footer{
     background: rgb(76, 128, 196);
     padding: 25px 0px 20px 0px;
+    /* Fixa o footer na parte inferior da página */
     position: relative;
-
+    left: 0;
+    bottom: 0;
+    width: 100%;
 }
 
 footer .navbar-nav a{

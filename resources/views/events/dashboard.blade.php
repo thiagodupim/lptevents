@@ -28,12 +28,17 @@
                                 <td><a href="/events/{{ $event->id }}">{{ $event->title }}</a></td>
                                 <td>{{ count($event->users) }}</td> {{-- /*Para imprimir a quantidade de participantes do evento*/ --}}
                                 <td>
-                                    <a href="/events/edit/{{ $event->id }}" class="btn btn-info edit-btn"> <ion-icon name="create-outline"></ion-icon>Editar Viagem</a> 
-                                    <form action="/events/{{ $event->id }}" method="POST">
+                                    <a href="/events/edit/{{ $event->id }}" class="btn btn-info edit-btn">
+                                        <ion-icon name="create-outline"></ion-icon> Editar Viagem
+                                    </a> 
+                                    <a href="{{ route("trip.Cancellation", $event->id) }}" class="btn btn-danger delete-btn">
+                                        <ion-icon name="trash-outline"></ion-icon>Cancelar Viagem
+                                    </a>
+                                    {{--<form action="/events/{{ $event->id }}" method="POST">
                                         @csrf 
-                                        @method('DELETE') {{-- Aqui estamos induzindo que o metodo para esse formulário é um delete e não um post--}}
-                                        <button type="submit" class="btn btn-danger delete-btn"> <ion-icon name="trash-outline"></ion-icon> Desabilitar Viagem </button>
-                                    </form>
+                                        @method('DELETE') {{-- Aqui estamos induzindo que o metodo para esse formulário é um delete e não um post
+                                        <button type="button" class="btn btn-danger delete-btn" data-bs-toggle="modal" data-bs-target="#inscricaoModal_{{ $event->id }}"><ion-icon name="trash-outline"></ion-icon>Desabilitar Viagem</button>--}}
+                                    {{--</form>--}}
                                 </td>
                             </tr>
                         @endforeach
@@ -43,6 +48,7 @@
             @else
                 <p>Você ainda não tem viagens criadas, <a href="/events/create">Criar Viagem</a></p>
             @endif
+            <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
         </div>
     @endif
 @endauth
@@ -76,6 +82,7 @@
                                 <td>
                                 <form action="/events/leave/{{ $event->id }}" method="POST">
                                     @csrf
+                                    <a href="https://forms.gle/vbwNdXehfQH1X2Qh8" class="btn btn-info" target="_blank">Continuar inscrição</a>
                                     @method("DELETE")
                                     <button type="submit" class="btn btn-danger delete-btn">
                                         <ion-icon name="trash-outline"></ion-icon> Cancelar Viagem
@@ -87,15 +94,11 @@
                     </tbody>
                 </table>
             @else 
-                <p>Você ainda não está inscrito de nenhuma viagem, <a href="/">veja todas as viagens</a></p>
+                <p>Você ainda não está inscrito em nenhuma viagem, <a href="/">veja todas as viagens</a></p>
                 <br> 
             @endif
-
             <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
-            
-            
         </div>
     @endif
 @endauth
-
 @endsection

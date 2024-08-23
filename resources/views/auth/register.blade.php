@@ -51,10 +51,16 @@
                     {{ __('Already registered?') }}
                 </a>
 
-                <x-jet-button class="ml-4">
+                <x-jet-button class="ml-4" onclick="termos()">
                     {{ __('Register') }}
                 </x-jet-button>
             </div>
         </form>
     </x-jet-authentication-card>
 </x-guest-layout>
+
+<script>
+    function termos(){
+        window.alert('Você aceita nossos termos de uso?')
+    }
+</script>

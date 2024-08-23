@@ -20,15 +20,27 @@
 
     <div id="cards-container" class="row">
         @foreach($events as $event)
-        <div class="card col-md-3">
-            <img src="/img/events/{{ $event->image }}" alt="{{ $event->title }}"> {{-- Para não vim mais a imagem estática. Aqui concatenamos com nosso $events->image e vim a imagem correta do upload --}}
-            <div class="card-body">
-                <p class="card-date">{{ date('d/m/Y', strtotime($event->date)) }}</p> {{-- Aqui vai transferir o formato de datas lá do banco o strtotime e a função date vai fazer o format para o formato que agente precisa --}}
-                <h5 class="card-title">{{ $event->title }}</h5>
-                <p class="card-participants"> {{ count($event->users) }} pacientes</p>
-                <a href="/events/{{ $event->id }}" class="btn btn-primary">Saiba mais</a> {{-- Esse link leva ao acesso  a rota show--}}
-            </div>
-        </div>
+            @if ($event->canceled == 'ativo')
+                <div class="card col-md-3" style="border-color: green">
+                    <img src="/img/events/{{ $event->image }}" alt="{{ $event->title }}"> {{-- Para não vim mais a imagem estática. Aqui concatenamos com nosso $events->image e vim a imagem correta do upload --}}
+                    <div class="card-body">
+                        <p class="card-date">{{ date('d/m/Y', strtotime($event->date)) }}</p> {{-- Aqui vai transferir o formato de datas lá do banco o strtotime e a função date vai fazer o format para o formato que agente precisa --}}
+                        <h5 class="card-title">{{ $event->title }}</h5>
+                        <p class="card-participants"> {{ count($event->users) }} pacientes</p>
+                        <a href="/events/{{ $event->id }}" class="btn btn-primary">Saiba mais</a> {{-- Esse link leva ao acesso  a rota show--}}
+                    </div>
+                </div>
+            @elseif ($event->canceled == 'cancelado')
+                <div class="card col-md-3" style="border-color: red">
+                    <img src="/img/events/{{ $event->image }}" alt="{{ $event->title }}"> {{-- Para não vim mais a imagem estática. Aqui concatenamos com nosso $events->image e vim a imagem correta do upload --}}
+                    <div class="card-body">
+                        <p class="card-date">{{ date('d/m/Y', strtotime($event->date)) }}</p> {{-- Aqui vai transferir o formato de datas lá do banco o strtotime e a função date vai fazer o format para o formato que agente precisa --}}
+                        <h5 class="card-title">{{ $event->title }}</h5>
+                        <p class="card-participants"> {{ count($event->users) }} pacientes</p>
+                        <a href="/events/{{ $event->id }}" class="btn btn-primary">Saiba mais</a> {{-- Esse link leva ao acesso  a rota show--}}
+                    </div>
+                </div>
+            @endif
         @endforeach
         @if(count($events) == 0 && $search)
             <p>Não foi possivel encontrar nenhuma viagem com {{ $search }}! <a href="/">Ver todos</a></p>

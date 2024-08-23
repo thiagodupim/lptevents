@@ -1,3 +1,13 @@
+<head>
+    <?php
+        /*if ($_SERVER['SERVER_PORT'] != '80') {
+            $url = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+            header('Location: ' . $url);
+            exit();
+        }*/
+    ?>
+</head>
+
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
@@ -39,7 +49,7 @@
                     </a>
                 @endif
 
-                <x-jet-button class="ml-4">
+                <x-jet-button class="ml-4" >
                     {{ __('Log in') }}
                 </x-jet-button>
             </div>
