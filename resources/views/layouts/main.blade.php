@@ -132,7 +132,7 @@
 
                 <div class="col-md-3">
                     <ul class="navbar-nav">
-                        <li>&copy; Prime Transporte Hospitalar <br> Todos os direitos reservados</li>
+                        <li>&copy; Conexão Saúde <br> Todos os direitos reservados</li>
 
                         <li id="endereco">
                             Rua Domingos José de Almeida - nº 50000 - Bom Jesus, Diamantina - MG, 39100-000
