@@ -62,7 +62,7 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    //Aqui vamos fazer com que saberemos quais são os eventos de um usuário e quando pergar um evento sabermos o usuário dono dele
+    //Aqui vamos fazer com que saberemos quais são os eventos de um usuário e quando pegar um evento sabermos o usuário dono dele
     //events no plural porque tem muitos eventos
     public function events() { 
         return $this->hasMany('App\Models\Event');//E o hasMany para dizer que realmente tem muitos eventos
@@ -72,4 +72,8 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Models\Event');
     }
 
+    public function eventUser()
+    {
+        return $this->belongsToMany(Event::class, 'event_user');
+    }
 }

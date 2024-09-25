@@ -31,4 +31,9 @@ class Event extends Model
     {
         return $this->belongsToMany('App\Models\User');
     }
+
+    public function eventUser()
+    {
+        return $this->belongsToMany(User::class, 'event_user');
+    }
 }

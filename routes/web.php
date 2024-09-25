@@ -54,3 +54,5 @@ Route::get('/inscricao', function () {
 Route::get('event/cancellation/{id}', [EventController::class, 'tripCancellation'])->name('trip.Cancellation');
 
 Route::post('event/cancel-trip/{id}', [EventController::class, 'cancelTrip'])->name('trip.cancel');
+
+Route::get('event/list-subscribers', [EventController::class, 'listSubscribers'])->name('list.subscribers');

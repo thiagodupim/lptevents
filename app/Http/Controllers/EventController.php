@@ -20,7 +20,7 @@ class EventController extends Controller
                 ['title', 'like', '%'.$search.'%']
             ])->get();
         } else {
-            $events = Event::all(); //Aqui estamos com o all estamos chamando todos os eventos do meu DB
+            $events = Event::all(); //Aqui estamos com o all chamando todos os eventos do meu DB
         }
     
         return view('welcome', ['events' => $events, 'search' => $search]); //Aqui passamos pra view
@@ -184,5 +184,12 @@ class EventController extends Controller
 
         $event->canceled = 'cancelado';
         $event->cancellation_reason = $request->description;
+    }
+
+    public function listSubscribers()
+    {
+        $trips = Event::all();
+
+        return view('list_subscribers.subscribers', compact('trips'));
     }
 }

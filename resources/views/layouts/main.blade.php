@@ -38,7 +38,7 @@
                                     <a href="/events/create" class="nav-link">Criar Viagens</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/" class="nav-link">Listas de Inscritos</a>
+                                    <a href="{{ route('list.subscribers') }}" class="nav-link">Listas de Inscritos</a>
                                 </li>
                             @endif
 
